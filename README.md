@@ -110,10 +110,33 @@ Finally we investigated the potential cause of the high number of errornous reco
 ![audit logged statements](assets/audit_logged_statements.png)
 
 ## Part 4: Charting the course for Maji Ndogo's water future
-In this final part of the project, we finalise our data analysis using the **full suite of SQL tools**. We will gain our final insights, use these to classify water sources, and prepare relevant data for the relevant stakeholders i.e. Maji Ndogo's engineering teams.
+We finalised our data analysis using the **full suite of SQL tools** gaining our final insights and used them to classify water sources, and prepared relevant data for the relevant stakeholders i.e. Maji Ndogo's engineering teams.
 
-### Objectives
-By the end of the project's final quadrant, one should be able to:
-- Demonstrate the ability to **utilise filters, aggregations, functions, and joins together** in data analysis.
-- Demonstrate an understanding of the **challenges faced in solving complex, real-world problems using SQL**.
-- Demonstrate the ability to **use subqueries, CTEs** and **views**.
+### Final analysis
+We started by building a pivot table to breakdown and highlight the data with respect to location attributes like province and town names and water source types to help us understand:
+
+1. Where the problems occured
+2. What was needed to improve the water source at the specified location
+
+![pivot table](assets/pivot_table.png)
+
+### Recommended Strategy & Practical Solutions
+We also came up with a strategy that would help us start aleviating Maji Ndogo's water crisis efficiently, and it involved the following:
+
+1. Concentrating Maji Ndogo's primary efforts on improving water sources that affected the most people i.e:
+    - Most people will benefit if we improve the shared taps first.
+    - Wells are a good source of water, but many are contaminated. Fixing this will benefit a lot of people.
+    - Fixing existing infrastructure will help many people. If they have running water again, they won't have to queue, thereby shortening queue times for others *Killing two birds with one stone*.
+    - Installing taps in homes will stretch Maji Ndogo's resources too thin, so for now, if the queue times are low, we won't improve that source.
+2. Ensuring the respective stakeholders e.g. engineering teams, know that most water sources are located in rural areas as this means they will have to make necessary repairs/upgrades in rural areas where there could be potential challenges like poor road conditions, insufficient supplies and skilled labour which are harder to overcome.
+
+At a high level, the Improvements to be implemented were as follows:
+
+1. `river`s → Drill wells
+2. `well`s: if the well is contaminated with chemicals → Install RO filter
+3. `well`s: if the well is contaminated with biological contaminants → Install UV and RO filter
+4. `shared_taps`: if the queue is longer than 30 min (30 min and above) → Install `X` taps nearby where `X` number of taps is calculated using `X = FLOOR(time_in_queue / 30)`
+5. `tap_in_home_broken` → Diagnose local infrastructure
+
+### Solution Implementation
+We finally implemented our plan in the database to share the data with relevant stakeholders on what issues to focus on when implementing the recommended actions to start aleviating the water crisis while impacting huge sections of the affected population simultaneously.
