@@ -69,14 +69,14 @@ As per the project's description, the `description` column should have "Clean" i
 We ran a query which returned **38** such records which we updated the `results` column from `Clean` to `Contaminated: Biological` where the `biological` column had a value `> 0.01`
 
 ## Part 2: Clustering data to unveil Maji Ndogo's water crisis
-In this second part of the project, we gear up for a deep analytical dive into Maji Ndogo's water scenario harnessing the power of a wide range of **functions**, including **intricate window functions**, to tease out insights from the entities.
+In this second part of the project, we geared up for a deep analytical dive into Maji Ndogo's water scenario harnessing the power of a wide range of **functions**, including **intricate window functions**, to tease out insights from the entities.
 
 ### Data Analysis
-In this section of the project, we started with some preliminary data exploration and cleaning of the `employee` entity.
+We started with some preliminary data exploration and cleaning of the `employee` entity.
 
 We also investigated the `location` entity to understand where various water sources and types were located in **Maji Ndogo**.
 
-We also explored the `water_source` entity further to get a deeper understanding of the data and the population being served by the water sources scattered across **Maji Ndogo**.
+We explored the `water_source` entity further to get a deeper understanding of the data and the population being served by the water sources scattered across **Maji Ndogo**.
 
 Queues and Queue times were an important part of the study as we analysed the `visits` entity which documented all of the visits the field surveyors made to each location.
 
@@ -92,12 +92,22 @@ Queues and Queue times were an important part of the study as we analysed the `v
     - Wednesdays and Sundays have the shortest queues.
 
 ## Part 3: Weaving the data threads of Maji Ndogo's narrative
-In this third part of the project, we will pull data from **many different tables** and apply some **statistical analyses** to examine the consequences of an audit report that cross-references a random sample of records.
+In this third part of the project, we pulled data from **many different tables** and applied some **statistical analyses** to examine the consequences of an audit report that cross-referenced a random sample of records.
 
-### Objectives
-By the end of the project's third quadrant, one should be able to:
-- Demonstrate the ability to **retrieve data from multiple sources**.
-- Demonstrate an understanding of the challenges associated with **joining multiple data sources together**.
+### Data Audit
+We imported and integrated an auditors' report, in the form of a `.csv` file into the existing schema and used the auditors' report to perform a comparative analysis against the surveyors' records.
+
+An initial comparison of surveyors' scores against matched auditors' records revealed that approximately **94%** of surveyors' records were accurate as per the auditors' report.
+
+We also investigated the remaining **6%** of the surveyors' records revealing a number of surveyors, **17** of them, had erronous records as per the auditors' report. We than aggregate the no. of times each of the surveyors logged an errornous record and sorted them in descending order on the count of errors.
+
+![Surveyors with errornous records](assets/surveyors_with_errornous_logs.png)
+
+To focus on extreme cases, we computed the average no. of mistakes that were made by the surveyors when logging their records. We found out that **6** mistakes were made on average and filtered for surveyors that made more mistakes than the average no. of mistakes revealing the top **4** surveyors from the image above.
+
+Finally we investigated the potential cause of the high number of errornous records made by the respective surveyors. The auditors' report also contains statements made by locals recorded by the auditors, which could potentially point to some leads on why there were a huge number of errors *(compared to the average)* logged by the respective surveyors
+
+![audit logged statements](assets/audit_logged_statements.png)
 
 ## Part 4: Charting the course for Maji Ndogo's water future
 In this final part of the project, we finalise our data analysis using the **full suite of SQL tools**. We will gain our final insights, use these to classify water sources, and prepare relevant data for the relevant stakeholders i.e. Maji Ndogo's engineering teams.
